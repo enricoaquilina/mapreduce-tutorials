@@ -1,6 +1,6 @@
 from mrjob.job import MRJob
 
-class MRRatingCounter(MRJob):
+class MRAverageAgeCounter(MRJob):
     def mapper(self, key, line):
         (userID, userName, age, noOfFriends) = line.split(',')
         yield int(age), int(noOfFriends)
@@ -17,4 +17,4 @@ class MRRatingCounter(MRJob):
         yield age, total / numElements
 
 if __name__ == '__main__':
-    MRRatingCounter.run()
+    MRAverageAgeCounter.run()
