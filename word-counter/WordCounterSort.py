@@ -22,7 +22,7 @@ class MRCounterSort(MRJob):
         yield word, sum(noOfOccurrences)
 
     def map_make_counts_key(self, word, count):
-        # here we need to switch the order of th key, value pair from the reducer which we get our data from
+        # here we need to switch the order of the key, value pair from the reducer which we get our data from
         # thus we convert the order here and pad the count so mapreduce can sort correctly
         yield '%04d'%int(count), word
 

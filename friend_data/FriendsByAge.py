@@ -2,19 +2,19 @@ from mrjob.job import MRJob
 
 class MRAverageAgeCounter(MRJob):
     def mapper(self, key, line):
-        (userID, userName, age, noOfFriends) = line.split(',')
-        yield int(age), int(noOfFriends)
+        (user_id, username, age, no_of_friends) = line.split(',')
+        yield int(age), int(no_of_friends)
 
-    def reducer(self, age, noOfFriends):
+    def reducer(self, age, no_of_friends):
         # the looping across the various ages is implicit..we define what we do with each age
         # age#1: 45, 23, age#2: 90, 20, age#3: 100, 2
         total = 0
-        numElements = 0
-        for x in noOfFriends:
+        num_elements = 0
+        for x in no_of_friends:
             total += x
-            numElements += 1
+            num_elements += 1
 
-        yield age, total / numElements
+        yield age, total / num_elements
 
 if __name__ == '__main__':
     MRAverageAgeCounter.run()
